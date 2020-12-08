@@ -33,6 +33,10 @@ projectionModel = models.OrthographicProjectionBlendshapes(
 modelParams = None
 lockedTranslation = False
 drawOverlay = False
+
+# to use video uncomment the line below
+#cap =cv2.VideoCapture("path to the video file")
+# to use video capture from camera uncomment the line below
 cap = cv2.VideoCapture(0)
 writer = None
 cameraImg = cap.read()[1]
