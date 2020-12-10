@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TRIAL</title>
+        <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+
+        <!-- <link rel="stylesheet" href="node_modules/bulma-modal-fx/dist/css/modal-fx.min.css"> -->
+        <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+        <script defer src="http://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+        
+        <!-- <link rel="stylesheet" href="style/debug.css"> -->
+
+        <style>
+            .center {
+                display :flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #map { 
+                padding-top: 40%;
+                min-height: 450px;
+            }   
+
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar is-transparent has-shadow is-spaced is-dark" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="http://localhost:8080">
+                        <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
+                        <h1 class="title" style="color:white">MUSIC MAP</h1>
+                    </a>
+                    
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item">
+                            <span class="icon has-text-primary">
+                                <i class="fas fa-home"></i>
+                            </span>
+                            <span>Home</span>
+                        </a>
+                        <a class="navbar-item">
+                            <span class="icon has-text-success">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span>Add</span>
+                        </a>
+                        <span>
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link">
+                                    <span class="icon has-text-danger">
+                                        <i class="fas fa-building"></i>
+                                    </span>
+                                    <span>City</span>
+                                </a>
+
+                                <div class="navbar-dropdown">
+                                    <a class="navbar-item">
+                                        <strong>Indore</strong>
+                                    </a>
+                                    <a class="navbar-item">
+                                        <strong>Bhopal</strong>
+                                    </a>
+                                    <a class="navbar-item">
+                                        <strong>Mumbai</strong>
+                                    </a>
+                                </div>
+                            </div>
+                        </span>
+
+                        <a class="navbar-item">
+                            <span class="icon" style="color:rgb(3, 66, 202)">
+                                <i class="fas fa-info"></i>
+                            </span>
+                            <span>About Us</span>
+                        </a>
+                    </div>
+
+                    <div class="navbar-end">
+                        <a class="navbar-item is-hidden-touch is-hidden-desktop-only">
+                            <span class="icon" style="color:#38A1F3">
+                                <i class="fab fa-lg fa-twitter"></i>
+                            </span>
+                        </a>
+                        <a class="navbar-item is-hidden-touch is-hidden-desktop-only">
+                            <span class="icon" style="color:#4267B2">
+                                <i class="fab fa-lg fa-facebook-f"></i>
+                            </span>
+                        </a>
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a class="button is-primary">
+                                    <strong>Log In</strong>
+                                </a>
+
+                                <a class="button is-dark">
+                                    Sign-up
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="section is-paddingless">
+            <div class="columns">
+                <div class="column">
+                    <div id="map"></div>
+                </div>
+            </div>
+
+              
+        </div>
+
+        <div class="hero is-dark" style="padding-top:20px">
+            <div class="container">
+                <p class="title center bd-notification is-primary">ABOUT US</p>
+                <hr>
+                <p style="text-align:justify; color:lightgray">
+                        Indore is known for its unique, eclectic mix of music; classical and folk, niche and popular,
+                        classic rock and death metal. Music is created and performed at various locales of the city –
+                        both at formal (music schools, concert halls) as well as informal (cafés) spaces. It is also the
+                        home to four prominent gharanas of Hindustani classical music—Maihar Gharana, Gwalior
+                        Gharana, Senia Gharana and Indore Gharana (founded by Ustad Amir Khan). Throughout
+                        Madhya Pradesh musical practices are based on vibrant improvisational practices (and not very
+                        tightly bound strict rules) which make the tradition flowing and receptive to changes and
+                        evolution. The biggest musical festival of Indore is the Amir Khan Festival organized every year
+                        during January-March to honor one of the most influential figures in Hindustani classical music,
+                        Ustad Amir Khan. Helmed by Ustad Allauddin Khan Sangeet Academy based in Bhopal this
+                        music festival is as much about the congregation for music maestros as it is an offering to
+                        discover emerging musicians. There are also quite a few good music academies in the city
+                        which offer guidance to new talents.
+                </p>
+                <hr>
+            </div>
+        </div>
+
+        <div id="modal-marker" class="modal modal-fx-3dSlit">
+            <div class="modal-background"></div>
+            
+            <div class="modal-content is-tiny">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="/img/25-75.jpeg" height="42px">
+                        </figure>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-48x48">
+                                    <img src="/img/profile.jpeg">
+                                </figure>
+                            </div>
+
+                            <div class="media-content">
+                                <p class="title is-4">First Last</p>
+                                <p class="subtitle is-6">@subtitle</p>
+
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            qwerty uiop sdfg hjkl zxcv bnm.
+                            <a href="www.google.com">visit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="modal-close"></button>
+            </div>
+            
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                var $burgers = getAll('.burger');
+
+                if ($burgers.length > 0) {
+                    $burgers.forEach(function ($el) {
+                        $el.addEventListener('click', function () {
+                            var target = $el.dataset.target;
+                            var $target = document.getElementById(target);
+                            $el.classList.toggle('is-active');
+                            $target.classList.toggle('is-active');
+                        });
+                    });
+                }
+            });
+
+            function getAll(selector) {
+                 return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
+            }
+
+            //modals
+            var rootEl = document.documentElement;
+            var $modals = getAll('.modal');
+            var $modalButtons = getAll('.modal-button');
+            var $modalCloses = getAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button');
+
+            if ($modalButtons.length > 0) {
+                $modalButtons.forEach(function ($el) {
+                    $el.addEventListener('click', function () {
+                        var target = $el.dataset.target;
+                        openModal(target);
+                    });
+                });
+            }
+
+            if ($modalCloses.length > 0) {
+                $modalCloses.forEach(function ($el) {
+                    $el.addEventListener('click', function () {
+                        closeModals();
+                    });
+                });
+            }
+
+            function openModal(target) {
+                var $target = document.getElementById(target);
+                rootEl.classList.add('is-clipped');
+                $target.classList.add('is-active');
+            }
+
+        function closeModals() {
+            rootEl.classList.remove('is-clipped');
+            $modals.forEach(function ($el) {
+                $el.classList.remove('is-active');
+            });
+        }
+        </script>
+
+<script type="text/javascript" src="markers.js"></script>
+<script>        
+    var locations=data;
+    function initMap() {
+        var map=new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: {lat: 22.713527, lng: 75.855961},
+            styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+
+        });
+
+        var markers=locations.map(function(location, i){
+            return new google.maps.Marker({
+                position : location,
+            });
+        });
+
+        var markerCluster=new MarkerClusterer(map, markers,{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+        var i;
+        
+        for(i=0;i<markers.length;i++) {
+            markers[i].addListener('click', function() {
+                var $target=document.getElementById("modal-marker");
+                $target.classList.add('is-active');
+            });
+        }
+    }
+</script>
+
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbyjqw1UNpkVh53y9UM9sNDleaUuIBZSM&callback=initMap"></script>  
+
+
+
+<!-- <script type="text/javascript" src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script> -->
+
+
+        <!-- <script type="text/javascript" src="dist/js/modal-fx.min.js"></script> -->
+
+    </body>
+</html>

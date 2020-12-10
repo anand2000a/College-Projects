@@ -1,0 +1,235 @@
+<!-- <html>
+	<body>
+		<form method='get' accept-charset="utf-8">
+			<input name="lat" placeholder="latitude" type="text">
+			<input name="lng" placeholder="longitude" type="text">
+			<input name="place" placeholder="placename" type="text">
+			<input type="submit">
+		</form>	
+	</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TRIAL</title>
+        <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+
+        <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+        <script defer src="http://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+        <style>
+            .center {
+                display :flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #map { 
+                padding-top: 40%;
+                min-height: 450px;
+			}   
+			
+			.label {
+				color : rgb(151, 151, 151);
+            }
+            
+            .html {
+                height : 100vh;
+            }
+
+            .body {
+                min-height : 100%;
+            }
+
+        </style>
+    </head>
+
+    <body style="height:100vh">
+        <nav class="navbar is-transparent has-shadow is-spaced is-dark" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="localhost:8080">
+                        <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
+                        <h1 class="title" style="color:white">MUSIC MAP</h1>
+                    </a>
+                    
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item">
+                            <span class="icon has-text-primary">
+                                <i class="fas fa-home"></i>
+                            </span>
+                            <span>Home</span>
+                        </a>
+                        <a class="navbar-item">
+                            <span class="icon has-text-success">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span>Add</span>
+                        </a>
+                        <span>
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link">
+                                    <span class="icon has-text-danger">
+                                        <i class="fas fa-building"></i>
+                                    </span>
+                                    <span>City</span>
+                                </a>
+
+                                <div class="navbar-dropdown">
+                                    <a class="navbar-item">
+                                        <strong>Indore</strong>
+                                    </a>
+                                    <a class="navbar-item">
+                                        <strong>Bhopal</strong>
+                                    </a>
+                                    <a class="navbar-item">
+                                        <strong>Mumbai</strong>
+                                    </a>
+                                </div>
+                            </div>
+                        </span>
+
+                        <a class="navbar-item">
+                            <span class="icon" style="color:rgb(3, 66, 202)">
+                                <i class="fas fa-info"></i>
+                            </span>
+                            <span>About Us</span>
+                        </a>
+                    </div>
+
+                    <div class="navbar-end">
+                        <a class="navbar-item is-hidden-touch is-hidden-desktop-only">
+                            <span class="icon" style="color:#38A1F3">
+                                <i class="fab fa-lg fa-twitter"></i>
+                            </span>
+                        </a>
+                        <a class="navbar-item is-hidden-touch is-hidden-desktop-only">
+                            <span class="icon" style="color:#4267B2">
+                                <i class="fab fa-lg fa-facebook-f"></i>
+                            </span>
+                        </a>
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a class="button is-primary">
+                                    <strong>Log In</strong>
+                                </a>
+
+                                <a class="button is-dark">
+                                    Sign-up
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</nav>
+    
+        <form method="post" action="/admin/login/">
+        <div class="hero is-dark center" style="height:62vh">
+            <p class="title" style="padding-bottom:90px">LOG IN</p>
+
+			<div class="container" style="width:50vh">
+				<div class="field is-horizontal">
+					<div class="field-label is-normal">
+						<label class="label">UserName</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<p class="control has-icons-left">
+								<input class="input" name="username" type="text" placeholder="enter username">
+								<span class="icon is-small is-left">
+									<i class="fas fa-id-card"></i>
+								</span>
+							</p>
+						</div>
+                    </div>
+				</div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Password</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" type="password" name="password" placeholder="enter password">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>                   
+				</div>
+
+				<div class="container" style="padding-top:30px"></div>
+				<div class="field is-horizontal">
+					<div class="field-label">
+					
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="control">
+								<input type="submit" class="button is-black" value="Submit">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+        <div class="hero is-dark" style="padding-top:20px">
+            <div class="container">
+                <p class="title center bd-notification is-primary">ABOUT US</p>
+                <hr>
+                <p style="text-align:justify; color:lightgray">
+                        Indore is known for its unique, eclectic mix of music; classical and folk, niche and popular,
+                        classic rock and death metal. Music is created and performed at various locales of the city –
+                        both at formal (music schools, concert halls) as well as informal (cafés) spaces. It is also the
+                        home to four prominent gharanas of Hindustani classical music—Maihar Gharana, Gwalior
+                        Gharana, Senia Gharana and Indore Gharana (founded by Ustad Amir Khan). Throughout
+                        Madhya Pradesh musical practices are based on vibrant improvisational practices (and not very
+                        tightly bound strict rules) which make the tradition flowing and receptive to changes and
+                        evolution. The biggest musical festival of Indore is the Amir Khan Festival organized every year
+                        during January-March to honor one of the most influential figures in Hindustani classical music,
+                        Ustad Amir Khan. Helmed by Ustad Allauddin Khan Sangeet Academy based in Bhopal this
+                        music festival is as much about the congregation for music maestros as it is an offering to
+                        discover emerging musicians. There are also quite a few good music academies in the city
+                        which offer guidance to new talents.
+                </p>
+                <hr>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                var $burgers = getAll('.burger');
+
+                if ($burgers.length > 0) {
+                    $burgers.forEach(function ($el) {
+                        $el.addEventListener('click', function () {
+                            var target = $el.dataset.target;
+                            var $target = document.getElementById(target);
+                            $el.classList.toggle('is-active');
+                            $target.classList.toggle('is-active');
+                        });
+                    });
+                }
+            });
+
+            function getAll(selector) {
+                 return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
+            }
+
+        </script>
+
+    </body>
+</html>
